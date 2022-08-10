@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+     // in order to access this controllers from the client the user will need to go api/users(which is the name of our controller)
+   
     [ApiController]
-    // in order to access this controllers from the client the user will need to go api/users(which is the name of our controller)
-    [Route("api/controllers")]
+    [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly DataContext _context;
