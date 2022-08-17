@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.Entities;
 using API.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +12,8 @@ namespace API.Controllers
 {
      // in order to access this controllers from the client the user will need to go api/users(which is the name of our controller)
    
-    [ApiController]
-    [Route("api/[controller]")]
-    public class UsersController : ControllerBase
+
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
         
@@ -32,9 +32,12 @@ namespace API.Controllers
                return await _context.Users.ToListAsync();
 
         }
+        // it forces the user to send authorizations header e.g token
+        [Authorize]
         // get specific user
         // api/users/3
         [HttpGet("{id}")]
+        
         public async Task<ActionResult <AppUser>> GetUser(int id){
             // find is the method allow us to find from our db by using foreign key
                return await _context.Users.FindAsync(id);
