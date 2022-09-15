@@ -11,7 +11,7 @@ export class AccountService {
 
   constructor(private http:HttpClient) { }
   baseUrl = 'https://localhost:5001/api/';
-  private currentUserSource = new ReplaySubject<User>(1);
+  private currentUserSource = new ReplaySubject<User>(1);//to emit the last value
   $currentUser = this.currentUserSource.asObservable();
   login(model:User){
    return this.http.post(this.baseUrl + 'account/login',model).pipe(

@@ -1,28 +1,34 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="#">Dating App</a>
+      <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse" >
-        <ul class="navbar-nav mr-auto" *ngIf="accountService.$currentUser | async">
+        <ul class="navbar-nav mr-auto" >
+          <ng-container *ngIf="accountService.$currentUser | async">
+            <li class="nav-item">
+              <!--routerLinkActive add active css class to our a tag-->
+              <a class="nav-link" aria-current="page" routerLink="/memebers" routerLinkActive="active">Matches</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+            </li>
+          </ng-container>
+       
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">Matches</a>
+            <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Lists</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Messages</a>
-          </li>
-        
         </ul>
-        <div class="btn-group" dropdown *ngIf="accountService.$currentUser | async">
+        <div class="btn-group" dropdown *ngIf="(accountService.$currentUser | async) as user">
           <a id="button-basic" 
               dropdownToggle type="button" 
               class="btn dropdown-toggle text-light"
               aria-controls="dropdown-basic">
-             Welcome User
+             Welcome {{user.userName | titlecase}}
         </a>
             
           <div id="dropdown-basic" 
@@ -56,7 +62,7 @@
            type="search" 
            placeholder="Password" 
            aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class="btn btn-outline-success" type="submit">Login</button>
         </form>
       </div>
     </div>
