@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
+    [ApiController]//ApiController attributes
+    [Route("api/[controller]")]//inorder to route user need to navigate api/controller name
     public class BaseApiController : ControllerBase
     {
         

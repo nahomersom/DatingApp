@@ -33,7 +33,7 @@ namespace API.Controllers
 
         }
         // it forces the user to send authorizations header e.g token
-        [Authorize]
+        [Authorize]//we need to authorize first
         // get specific user
         // api/users/3
         [HttpGet("{id}")]
